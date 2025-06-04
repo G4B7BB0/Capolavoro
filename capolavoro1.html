@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="D:\capolavoro\css\cap.css">
+  <title>Il mio Progetto in C</title>
+  <style>
+    /* Stile globale */
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(180deg, #e74c3c, #000000); /* Gradiente morbido con rosso acceso */
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  /* Container centrale con bordi arrotondati */
+  .container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff; /* Sfondo chiaro per il container */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ombra morbida */
+  }
+
+  /* Titoli principali */
+  h1, h2 {
+    color: #e74c3c; /* Rosso acceso per i titoli */
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #e74c3c; /* Linea rossa accesa sotto il titolo */
+    padding-bottom: 10px;
+  }
+
+  /* Testo dei paragrafi */
+  p {
+    color: #555; /* Testo morbido per i paragrafi */
+    font-size: 1.1em;
+  }
+
+  /* Lista */
+  ul {
+    padding-left: 30px;
+    list-style-type: none;
+    margin: 0;
+  }
+
+  li {
+    margin: 10px 0;
+    font-size: 1.1em;
+    position: relative;
+    padding-left: 25px;
+  }
+
+  li:before {
+    content: '\2022'; 
+    color: #e74c3c; 
+    font-size: 1.5em;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  li strong {
+    color: #e74c3c; 
+  }
+
+  /* Codice sorgente */
+  pre {
+    background: #dcdfe1; 
+    color: #2e3b4e; 
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+
+  /* Link di download */
+  .download {
+    margin-top: 20px;
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .download:hover {
+    background: #c0392b;
+    transform: scale(1.1); 
+  }
+
+  /* Immagini */
+  img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 15px;
+    border: 3px solid #ddd; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+
+  /* Modifiche agli spaziamenti */
+  br {
+    margin-top: 10px;
+  }
+
+  /* Header con bottone musica a destra */
+  .header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+  }
+
+  /* Bottone musica */
+  .music-button {
+    background: #e74c3c;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .music-button:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+  }
+  </style>
+</head>
+<body>
+    <div class="container">
+    <div class="header">
+      <h1>Progetto in C: Rubrica</h1>
+      <button class="music-button" onclick="toggleMusic()">▶ Avvia Musica</button>
+    </div>
+
+    <p><strong>Autore:</strong> Bertezago Gabriele ed Emanuele Ghizzardi</p>
+
+    <audio id="musica" loop>
+      <source src="D:\capolavoro\musica\capolavoro.mp3" type="audio/mpeg">
+    </audio>
+
+    <p>
+      Questo sito presenta il mio capolavoro realizzato per il terzo anno dell'indirizzo informatico...
+    </p>
+
+    <h2>Funzionalità principali</h2>
+    <ul>
+      <li><strong>Aggiunta di contatti:</strong> Il programma consente di inserire nuovi contatti nella rubrica, includendo informazioni come nome, cognome e numero di telefono.</li>
+      <li><strong>Visualizzazione della rubrica:</strong> La rubrica può essere visualizzata interamente, mostrando nome, cognome e numero di telefono di ogni contatto.</li>
+      <li><strong>Modifica dei contatti:</strong> È possibile modificare un contatto già presente, aggiornando le informazioni come nome, cognome e numero di telefono.</li>
+      <li><strong>Rimozione dei contatti:</strong> I contatti possono essere eliminati dalla rubrica, con conferma prima di procedere con la cancellazione.</li>
+      <li><strong>Interazione con l'utente:</strong> Il programma è progettato per essere semplice e interattivo, con un menu numerato per le varie azioni.</li>
+      <li><strong>Gestione della rubrica:</strong> La rubrica memorizza i contatti in una lista e supporta fino a 100 contatti, ma non salva i dati tra le sessioni.</li>
+    </ul>
+
+    <h2>Screenshot</h2>
+    <img src="D:\capolavoro\immagini\screenshot.png" alt="Screenshot del programma">
+
+    <h2>Codice Sorgente</h2>
+    <pre><code>
+        #include &lt;stdio.h&gt;
+
+        int main(void) {
+          printf("--- Rubrica ---\n");
+          printf("1. Aggiungi contatto\n");
+          printf("2. Mostra rubrica\n");
+          printf("3. Modifica contatto\n");
+          printf("4. Rimuovi contatto\n");
+          printf("5. Esci\n");  
+          printf("Scelta: "); scanf("%d", &scelta); getchar();
+        }
+    </code></pre>
+    <script>
+    const audio = document.getElementById("musica");
+    const button = document.querySelector(".music-button");
+
+  // Imposta il volume fisso iniziale (es. 30%)
+    audio.volume = 0.02;
+
+    function toggleMusic() {
+      if (audio.paused) {
+      audio.play();
+      button.textContent = "⏸ Pausa Musica";
+      } else {
+      audio.pause();
+      button.textContent = "▶ Avvia Musica";
+      }
+    }
+    </script>
+
+    <h2>Download</h2>
+    <div class="scarica" style="position: relative; height: 50px;">
+      <a class="download" href="d:\capolavoro\html\cpp.html" download style="position: absolute; left: 10px;">Vedi codice .cpp</a>
+      <a class="download" href="D:\capolavoro\c\Progetto.exe" download style="position: absolute; right: 10px;">Scarica il file .exe</a>
+    </div>
+  </div>
+</body>
+</html>
